@@ -167,7 +167,7 @@ export function WalletConnectButton() {
         onClick={() => (connected ? void handleSignIn() : handleConnect())}
         disabled={connecting || signing || pendingConnection}
       >
-        {connecting || pendingConnection ? "Connecting" : signing ? "Signing" : connected ? "Sign to play" : "Connect Phantom"}
+        {connecting || pendingConnection ? "Connecting" : signing ? "Signing" : connected ? "Sign to play" : "Connect wallet"}
       </button>
       {signInError ? <span className="wallet-error">{signInError}</span> : null}
       {walletError ? <span className="wallet-error">{walletError}</span> : null}
