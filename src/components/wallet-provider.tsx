@@ -139,6 +139,11 @@ export function WalletConnectButton() {
       return;
     }
 
+    if (!["Installed", "Loadable"].includes(String(phantom.readyState))) {
+      setWalletError("Install the Phantom browser extension to connect.");
+      return;
+    }
+
     select(phantom.adapter.name);
     setPendingConnection(true);
   };
