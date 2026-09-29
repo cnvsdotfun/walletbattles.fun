@@ -47,5 +47,6 @@ yarn-error.log*
 /.site-starter/
 /.agents/
 /.codex/
+/\.github-upload/
 /outputs/
 /work/
