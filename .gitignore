@@ -13,10 +13,14 @@
 # testing
 /coverage
 
-# next.js
-/.next/
-/.vinext/
+# TanStack Start / Vite
+/.output/
+/.tanstack/
+/\.next/
+/\.vinext/
 /out/
+/dist/
+*.tsbuildinfo
 
 # misc
 .DS_Store
@@ -35,9 +39,9 @@ yarn-error.log*
 .vercel
 
 # typescript
-next-env.d.ts
-/dist/
 /.wrangler/
+*.tar.gz
+*.zip
 # Checkout-local execution profile and tool state; never publish them.
 /.sites-runtime/
 /.site-starter/

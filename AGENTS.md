@@ -24,6 +24,9 @@
 - 1px for outlines/borders
 - Smooth animations for things that pop up like a modal, hover effects on buttons, page change effects
 - Keep it minimal
+- 8px border radii
+- Use Inter for every visible UI element and document surface. Do not mix in another display font.
+- Use the main text color or placeholder color for text. Reserve positive and negative colors for simple action buttons only.
 
 ## Output & Copywriting Rules (Strict)
 
@@ -33,22 +36,31 @@
 
 ## Color Palette
 
-- Background: #050505
+- Background: #151515
 - Cards/Modals/Boxes: #202020
-- Outlines/Borders: #252525
+- Outlines/Borders: #303030
 - Text/Icon/Logo: #f8f8ff
 - Placeholder Text: #505050
 - Button: #f8f8ff
-- Button Text: #050505
+- Button Text: #151515
 - Positive Color (success/accept/etc.): #29a24d
 - Negative Color (error/denied/cancel/etc.): #a51f2d
 
 # Algorithm
 
-- Take in account these aspects
-    - Realized/Unrealized PnL
-    - Hold time
-    - Total balance
+- Use a rolling 30-day snapshot.
+- Include realized and unrealized net SOL PnL after trading and network fees.
+- Use profitable closed-trade win rate and risk performance from drawdown and downside volatility.
+- Use total balance only to normalize profit and prevent wallet size from becoming the only path to a high score.
+- Hold time is not a standalone bonus; it is retained in the snapshot for future risk analysis.
+
+# Implementation Baseline
+
+- Use TanStack Start with TanStack Router, Vite, and Nitro for the Vercel deployment target.
+- Use NPM scripts and Tailwind CSS. Do not replace the stack with Next.js, Vinext, a Cloudflare starter, or a hosted-site starter.
+- Use Solana wallet adapter packages for wallet connection and Solana RPC for mainnet reads.
+- Use Zod at scoring, server-function, and external-data boundaries.
+- Keep Turso access server-side through a small adapter. Never expose database credentials in client code.
 
 # Product Contract
 
@@ -70,7 +82,7 @@
 
 - ELO starts at 1000.
 - ELO accumulates during a calendar month and is used as the leaderboard ranking.
-- The exact calendar reset behavior, timezone, and first-match volatility still need to be specified before implementation.
+- Reset at 00:00 UTC on the first day of each calendar month. Use higher ELO volatility for a wallet's first matches, then reduce it as monthly match count grows.
 - The algorithm also produces a 1–100 performance rating. It must account for profit, win rate, and risk performance, with the exact formula documented and tested before launch.
 - The algorithm must snapshot both wallets at battle start so the result cannot change during the 10-second reveal.
 - Show both players' shortened addresses and display names throughout the entire battle.
